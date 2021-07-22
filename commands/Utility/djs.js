@@ -1,5 +1,5 @@
-const Discord = require("discord.js")
-const fetch = require("node-fetch")
+const Discord = require("discord.js");
+const fetch = require("node-fetch");
 
 module.exports = {
  name: "djs",
@@ -9,18 +9,18 @@ module.exports = {
  usage: "djs (query)",
  run: async (client, message, args) => {
   try {
-   const query = args[0]
-   let version = message.content.split("--src=")[1]
-   if (!version) version = "stable"
+   const query = args[0];
+   let version = message.content.split("--src=")[1];
+   if (!version) version = "stable";
    if (!query)
     return message.lineReply({
      embed: {
       color: 16734039,
-      description: "❌ | Please enter a term to search!",
+      description: "<:error:860884617770303519> | Please enter a term to search!",
      },
-    })
-   const res = await fetch(`https://djsdocs.sorta.moe/v2/embed?src=${version}&q=${query}`)
-   const body = await res.json()
+    });
+   const res = await fetch(`https://djsdocs.sorta.moe/v2/embed?src=${version}&q=${query}`);
+   const body = await res.json();
    return message
     .lineReply({
      embed: body,
@@ -29,18 +29,18 @@ module.exports = {
      message.lineReply({
       embed: {
        color: 16734039,
-       description: "❌ | Invaild query!",
+       description: "<:error:860884617770303519> | Invaild query!",
       },
-     })
-    })
+     });
+    });
   } catch (err) {
-   console.log(err)
+   console.log(err);
    message.lineReply({
     embed: {
      color: 16734039,
      description: "Something went wrong... :cry:",
     },
-   })
+   });
   }
  },
-}
+};

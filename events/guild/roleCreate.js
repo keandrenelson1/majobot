@@ -1,5 +1,5 @@
-const Discord = require("discord.js")
-const config = require("../../config")
+const Discord = require("discord.js");
+const config = require("../../config");
 
 module.exports = async (client, role) => {
  try {
@@ -10,7 +10,7 @@ module.exports = async (client, role) => {
  role.guild.fetchAuditLogs().then(logs => {
   var userID = logs.entries.first().executor.id;
   var userAvatar = logs.entries.first().executor.avatarURL();
-  let roleCreate = new Discord.MessageEmbed()
+  let roleCreate = new Discord.MessageEmbed() // Prettier()
    .setTitle("**ROLE CREATE**")
    .setThumbnail(userAvatar)
    .setDescription(`**\n**:white_check_mark: Successfully \`\`CREATE\`\` Role.\n\n**Role Name:** \`\`${role.name}\`\` (ID: ${role.id})\n**By:** <@${userID}> (ID: ${userID})`)
@@ -21,6 +21,6 @@ module.exports = async (client, role) => {
  });
   */
  } catch (err) {
-  console.log(err)
+  console.log(err);
  }
-}
+};

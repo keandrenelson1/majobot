@@ -1,7 +1,6 @@
-const Discord = require("discord.js")
-const { play } = require("../../utilities/play")
-const config = require("../../config")
-const ytsr = require("youtube-sr").default
+const Discord = require("discord.js");
+const { play } = require("../../utilities/play");
+const ytsr = require("youtube-sr").default;
 
 module.exports = {
  name: "play",
@@ -10,55 +9,55 @@ module.exports = {
  category: "Music",
  usage: "play <youtube link | youtube video name>",
  run: async (client, message, args, silient) => {
-  silient = false
+  silient = false;
   // await ytsr.set("api", process.env.YOUTUBE);
-  if (!message.guild) return
-  const { channel } = message.member.voice
-  const serverQueue = message.client.queue.get(message.guild.id)
+  if (!message.guild) return;
+  const { channel } = message.member.voice;
+  const serverQueue = message.client.queue.get(message.guild.id);
   if (!channel) {
    return message.lineReply({
     embed: {
      color: 16734039,
-     description: "❌ | You should join a voice channel before using this command!",
+     description: "<:error:860884617770303519> | You should join a voice channel before using this command!",
     },
-   })
+   });
   }
   if (serverQueue && channel !== message.guild.me.voice.channel) {
    return message.channel.send({
     embed: {
      color: 16734039,
-     description: "❌ | You must be in the same voice channel as me",
+     description: "<:error:860884617770303519> | You must be in the same voice channel as me",
     },
-   })
+   });
   }
   if (!args.length) {
    return message.channel.send({
     embed: {
      color: 16734039,
-     description: `❌ | Usage: ${config.prefix} play <youtube link | youtube video name>`,
+     description: `<:error:860884617770303519> | Usage: ${process.env.PREFIX} play <youtube link | youtube video name>`,
     },
-   })
+   });
   }
-  const permissions = channel.permissionsFor(message.client.user)
+  const permissions = channel.permissionsFor(message.client.user);
   if (!permissions.has("CONNECT")) {
    return message.lineReply({
     embed: {
      color: 16734039,
-     description: "❌ | I need permissions to join your channel!",
+     description: "<:error:860884617770303519> | I need permissions to join your channel!",
     },
-   })
+   });
   }
   if (!permissions.has("SPEAK")) {
    return message.lineReply({
     embed: {
      color: 16734039,
-     description: "❌ | I need permissions to speak in your channel",
+     description: "<:error:860884617770303519> | I need permissions to speak in your channel",
     },
-   })
+   });
   }
-  const search = args.join(" ")
-  const videoPattern = /^(https?:\/\/)?(www\.)?(m\.)?(youtube\.com|youtu\.?be)\/.+$/gi
-  const urlValid = videoPattern.test(args[0])
+  const search = args.join(" ");
+  const videoPattern = /^(https?:\/\/)?(www\.)?(m\.)?(youtube\.com|youtu\.?be)\/.+$/gi;
+  const urlValid = videoPattern.test(args[0]);
   const queueConstruct = {
    textChannel: message.channel,
    channel,
@@ -69,49 +68,61 @@ module.exports = {
    filters: [],
    realseek: 0,
    playing: true,
-  }
-  let songInfo = null
-  let song = null
+  };
+  let songInfo = null;
+  let song = null;
   try {
    if (serverQueue) {
     if (urlValid) {
-     message.lineReply(new Discord.MessageEmbed().setColor("RANDOM").setDescription(`:notes: Searching 🔍 [\`LINK\`](${args.join(" ")})`))
+     message.lineReply(
+      new Discord.MessageEmbed() // Prettier()
+       .setColor("RANDOM")
+       .setDescription(`:notes: Searching 🔍 [\`LINK\`](${args.join(" ")})`)
+     );
     } else {
-     message.lineReply(new Discord.MessageEmbed().setColor("RANDOM").setDescription(`:notes: Searching 🔍 \`${args.join(" ")}\``))
+     message.lineReply(
+      new Discord.MessageEmbed() // Prettier()
+       .setColor("RANDOM")
+       .setDescription(`:notes: Searching 🔍 \`${args.join(" ")}\``)
+     );
     }
    } else {
-    queueConstruct.connection = await channel.join()
-    const successjoin = new Discord.MessageEmbed()
+    queueConstruct.connection = await channel.join();
+    const successjoin = new Discord.MessageEmbed() // Prettier()
      .setColor("RANDOM")
      .setDescription(`👍 Joined \`${channel.name}\` 📄 bound \`#${message.channel.name}\``)
-     .setFooter("Requested by " + `${message.author.username}`, message.author.displayAvatarURL({ dynamic: true, format: "png", size: 2048 }))
+     .setFooter("Requested by " + `${message.author.username}`, message.author.displayAvatarURL({ dynamic: true, format: "png", size: 2048 }));
     message.lineReply(successjoin).then(
      successjoin.delete({
       timeout: 5000,
      })
-    )
+    );
     if (urlValid) {
-     const urlvailds = new Discord.MessageEmbed().setColor("RANDOM").setDescription(`:notes: Searching 🔍 [\`LINK\`](${args.join(" ")})`)
-     await message.lineReply(urlvailds)
+     const urlvailds = new Discord.MessageEmbed() // Prettier()
+      .setColor("RANDOM")
+      .setDescription(`:notes: Searching 🔍 [\`LINK\`](${args.join(" ")})`);
+     await message.lineReply(urlvailds);
      urlvailds.delete({
       timeout: 5000,
-     })
+     });
     } else {
-     const urlvaildnormal = new Discord.MessageEmbed().setColor("RANDOM").setDescription(`:notes: Searching 🔍 \`${args.join(" ")}\``)
-     await message.lineReply(urlvaildnormal)
+     const urlvaildnormal = new Discord.MessageEmbed() // Prettier()
+      .setColor("RANDOM")
+      .setDescription(`:notes: Searching 🔍 \`${args.join(" ")}\``);
+     await message.lineReply(urlvaildnormal);
      urlvaildnormal.delete({
       timeout: 5000,
-     })
+     });
     }
-    queueConstruct.connection.voice.setSelfDeaf(true)
-    queueConstruct.connection.voice.setDeaf(true)
+    queueConstruct.connection.voice.setSelfDeaf(true);
+    queueConstruct.connection.voice.setDeaf(true);
    }
   } catch {}
   if (urlValid) {
    try {
-    songInfo = await ytsr.searchOne(search)
+    songInfo = await ytsr.searchOne(search);
     if (!songInfo) {
-     console.log("0")
+     console.log("0");
     }
     // console.log(songInfo)
     song = {
@@ -119,92 +130,92 @@ module.exports = {
      url: songInfo.url,
      thumbnail: songInfo.thumbnail,
      duration: songInfo.durationFormatted,
-    }
+    };
     if (!song.title && !song.url && song.thumbnail && song.duration) {
-     queueConstruct.connection.disconnect()
+     queueConstruct.connection.disconnect();
      return message.lineReply({
       embed: {
        color: 16734039,
-       description: "❌ | Cannot play the video!",
+       description: "<:error:860884617770303519> | Cannot play the video!",
       },
-     })
+     });
     }
    } catch (error) {
     if (song.statusCode === 403) {
-     queueConstruct.connection.disconnect()
+     queueConstruct.connection.disconnect();
      return message.lineReply({
       embed: {
        color: 16734039,
-       description: "❌ | Max uses of api key, please update! (403)",
+       description: "<:error:860884617770303519> | Max uses of api key, please update! (403)",
       },
-     })
+     });
     } else if (song.statusCode === 429) {
-     queueConstruct.connection.disconnect()
+     queueConstruct.connection.disconnect();
      return message.lineReply({
       embed: {
        color: 16734039,
-       description: "❌ | Max uses of host requests, please try again later (429)",
+       description: "<:error:860884617770303519> | Max uses of host requests, please try again later (429)",
       },
-     })
+     });
     }
    }
   } else {
    try {
-    songInfo = await ytsr.searchOne(search)
+    songInfo = await ytsr.searchOne(search);
     song = {
      title: songInfo.title,
      url: songInfo.url,
      thumbnail: songInfo.thumbnail,
      duration: songInfo.durationFormatted,
-    }
+    };
    } catch (error) {
-    queueConstruct.connection.disconnect()
+    queueConstruct.connection.disconnect();
     message.lineReply({
      embed: {
       color: 16734039,
       description: "Something went wrong why searching for your song... :cry:",
      },
-    })
+    });
    }
   }
   if (!song) {
-   queueConstruct.connection.disconnect()
+   queueConstruct.connection.disconnect();
    return message.lineReply({
     embed: {
      color: 16734039,
-     description: "❌ | Cannot play the video!",
+     description: "<:error:860884617770303519> | Cannot play the video!",
     },
-   })
+   });
   }
   if (!song.title && !song.url && !song.thumbnail && !song.duration) {
    return message.lineReply({
     embed: {
      color: 16734039,
-     description: "❌ | Cannot play the video!",
+     description: "<:error:860884617770303519> | Cannot play the video!",
     },
-   })
+   });
   }
-  let thumb = "https://images-ext-2.discordapp.net/external/55DLQjqMFAc-wAiT7O1NJS158tv6OUhsSHmBXmJ0Pkg/%3Fsqp%3D-oaymwEXCNAFEJQDSFryq4qpAwkIARUAAIhCGAE%3D%26rs%3DAOn4CLBz4zlh_7gUzfPyMIc3OcanVj2xyw/https/i.ytimg.com/vi/jJLpszZ6o-c/hq720.jpg"
-  if (song.thumbnail === undefined) thumb = "https://images-ext-2.discordapp.net/external/55DLQjqMFAc-wAiT7O1NJS158tv6OUhsSHmBXmJ0Pkg/%3Fsqp%3D-oaymwEXCNAFEJQDSFryq4qpAwkIARUAAIhCGAE%3D%26rs%3DAOn4CLBz4zlh_7gUzfPyMIc3OcanVj2xyw/https/i.ytimg.com/vi/jJLpszZ6o-c/hq720.jpg"
-  else thumb = song.thumbnail.url
+  let thumb = "https://images-ext-2.discordapp.net/external/55DLQjqMFAc-wAiT7O1NJS158tv6OUhsSHmBXmJ0Pkg/%3Fsqp%3D-oaymwEXCNAFEJQDSFryq4qpAwkIARUAAIhCGAE%3D%26rs%3DAOn4CLBz4zlh_7gUzfPyMIc3OcanVj2xyw/https/i.ytimg.com/vi/jJLpszZ6o-c/hq720.jpg";
+  if (song.thumbnail === undefined) thumb = "https://images-ext-2.discordapp.net/external/55DLQjqMFAc-wAiT7O1NJS158tv6OUhsSHmBXmJ0Pkg/%3Fsqp%3D-oaymwEXCNAFEJQDSFryq4qpAwkIARUAAIhCGAE%3D%26rs%3DAOn4CLBz4zlh_7gUzfPyMIc3OcanVj2xyw/https/i.ytimg.com/vi/jJLpszZ6o-c/hq720.jpg";
+  else thumb = song.thumbnail.url;
   if (serverQueue) {
-   let estimatedtime = Number(0)
+   let estimatedtime = Number(0);
    for (let i = 0; i < serverQueue.songs.length; i++) {
-    let minutes = serverQueue.songs[i].duration.split(":")[0]
-    let seconds = serverQueue.songs[i].duration.split(":")[1]
-    estimatedtime += Number(minutes) * 60 + Number(seconds)
+    let minutes = serverQueue.songs[i].duration.split(":")[0];
+    let seconds = serverQueue.songs[i].duration.split(":")[1];
+    estimatedtime += Number(minutes) * 60 + Number(seconds);
    }
    if (estimatedtime > 60) {
-    estimatedtime = Math.round((estimatedtime / 60) * 100) / 100
-    estimatedtime = estimatedtime + " Minutes"
+    estimatedtime = Math.round((estimatedtime / 60) * 100) / 100;
+    estimatedtime = estimatedtime + " Minutes";
    } else if (estimatedtime > 60) {
-    estimatedtime = Math.round((estimatedtime / 60) * 100) / 100
-    estimatedtime = estimatedtime + " Hours"
+    estimatedtime = Math.round((estimatedtime / 60) * 100) / 100;
+    estimatedtime = estimatedtime + " Hours";
    } else {
-    estimatedtime = estimatedtime + " Seconds"
+    estimatedtime = estimatedtime + " Seconds";
    }
-   serverQueue.songs.push(song)
-   const newsong = new Discord.MessageEmbed()
+   serverQueue.songs.push(song);
+   const newsong = new Discord.MessageEmbed() // Prettier()
     .setTitle(":notes:" + song.title)
     .setColor("RANDOM")
     .setThumbnail(thumb)
@@ -212,22 +223,22 @@ module.exports = {
     .setDescription(`\`\`\`Has been added to the Queue.\`\`\``)
     .addField("Estimated time until playing:", `\`${estimatedtime}\``, true)
     .addField("Position in queue", `**\`${serverQueue.songs.length - 1}\`**`, true)
-    .setFooter(`Requested by: ${message.author.username}#${message.author.discriminator}`, message.member.user.displayAvatarURL({ dynamic: true }))
-   return serverQueue.textChannel.lineReply(newsong)
+    .setFooter(`Requested by: ${message.author.username}#${message.author.discriminator}`, message.member.user.displayAvatarURL({ dynamic: true }));
+   return serverQueue.textChannel.lineReply(newsong);
   }
-  queueConstruct.songs.push(song)
-  message.client.queue.set(message.guild.id, queueConstruct)
+  queueConstruct.songs.push(song);
+  message.client.queue.set(message.guild.id, queueConstruct);
   try {
-   play(queueConstruct.songs[0], message, client, silient)
+   play(queueConstruct.songs[0], message, client, silient);
   } catch (error) {
-   message.client.queue.delete(message.guild.id)
-   await channel.leave()
+   message.client.queue.delete(message.guild.id);
+   await channel.leave();
    return message.channel.send({
     embed: {
      color: 16734039,
-     description: "❌ | I could not join the channel",
+     description: "<:error:860884617770303519> | I could not join the channel",
     },
-   })
+   });
   }
  },
-}
+};

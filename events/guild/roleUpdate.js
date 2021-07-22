@@ -1,5 +1,5 @@
-const Discord = require("discord.js")
-const config = require("../../config")
+const Discord = require("discord.js");
+const config = require("../../config");
 
 module.exports = async (client, oldRole, newRole) => {
  /*
@@ -12,7 +12,7 @@ try {
   var userID = logs.entries.first().executor.id;
   var userAvatar = logs.entries.first().executor.avatarURL();
   if (oldRole.name !== newRole.name) {
-   let roleUpdateName = new Discord.MessageEmbed()
+   let roleUpdateName = new Discord.MessageEmbed() // Prettier()
     .setTitle("**ROLE NAME UPDATE**")
     .setThumbnail(userAvatar)
     .setColor("RANDOM")
@@ -32,7 +32,7 @@ try {
    } else {
     var newColor = newRole.hexColor;
    }
-   let roleUpdateColor = new Discord.MessageEmbed()
+   let roleUpdateColor = new Discord.MessageEmbed() // Prettier()
     .setTitle("**ROLE COLOR UPDATE**")
     .setThumbnail(userAvatar)
     .setColor("RANDOM")
@@ -42,7 +42,7 @@ try {
    logChannel.send(roleUpdateColor);
   }
   if (oldRole.permissions !== newRole.permissions) {
-   let roleUpdate = new Discord.MessageEmbed()
+   let roleUpdate = new Discord.MessageEmbed() // Prettier()
    .setTitle("**UPDATE ROLE PERMISSIONS**")
    .setThumbnail(userAvatar)
    .setColor("RANDOM")
@@ -53,7 +53,7 @@ try {
   }
  });
 } catch (err) {
- let embed = new Discord.MessageEmbed()
+ let embed = new Discord.MessageEmbed() // Prettier()
   .setColor("#FF0000")
   .setTitle("Error!")
   .setDescription("**Error Code:** *" + err + "*")
@@ -61,4 +61,4 @@ try {
  return logChannel.send(embed);
 }
 */
-}
+};

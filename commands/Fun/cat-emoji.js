@@ -1,6 +1,6 @@
-const client = require("nekos.life")
-const Discord = require("discord.js")
-const neko = new client()
+const client = require("nekos.life");
+const Discord = require("discord.js");
+const neko = new client();
 
 module.exports = {
  name: "cat-emoji",
@@ -9,23 +9,29 @@ module.exports = {
  category: "Fun",
  usage: "cat-emoji",
  run: async (client, message, args) => {
-  ;(async () => {
+  (async () => {
    try {
-    let text = await neko.sfw.catText()
-    message.lineReply({
-     embed: {
-      color: "RANDOM",
-      description: text.cat,
-     },
-    })
+    let text = await neko.sfw.catText();
+    const embed = new Discord.MessageEmbed() // Prettier()
+     .setColor("RANDOM")
+     .setTitle(text.cat)
+     .setFooter(
+      "Requested by " + `${message.author.username}`,
+      message.author.displayAvatarURL({
+       dynamic: true,
+       format: "png",
+       size: 2048,
+      })
+     );
+    message.lineReply(embed);
    } catch (err) {
     message.lineReply({
      embed: {
       color: 16734039,
       description: "Something went wrong... :cry:",
      },
-    })
+    });
    }
-  })()
+  })();
  },
-}
+};

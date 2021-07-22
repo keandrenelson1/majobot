@@ -1,7 +1,13 @@
 @font-face {
- font-family: Roboto-Thin;
- /*src: url('/fonts/roboto-thin.otf');*/
- src: url("../fonts/roboto-thin.otf");
+ font-family: "Roboto-Thin";
+ src: url("../fonts/roboto-thin.ttf");
+}
+
+@font-face {
+ font-family: "Poppins";
+ font-style: normal;
+ font-weight: 200;
+ src: url("../fonts/poppins.ttf");
 }
 
 :root {
@@ -30,7 +36,7 @@
 
 .no-js {
  background: #f44336;
- font-family: Roboto-Thin;
+ font-family: "Poppins";
  color: #fff;
  text-align: center;
  display: -ms-flexbox;
@@ -104,7 +110,6 @@
 
 * {
  box-sizing: border-box;
- font-family: "Roboto-Thin";
  scrollbar-color: #353535 transparent;
  scrollbar-width: thin;
 }
@@ -139,10 +144,12 @@ body {
  flex-direction: column;
  -webkit-box-align: center;
  align-items: center;
- max-width: 800px;
+ max-width: 100%;
  padding: 20px 0px;
  margin: auto;
  margin-top: 60px;
+ max-width: 800px;
+ font-family: "Poppins";
 }
 
 img:not(.img, .server-icon) {
@@ -155,7 +162,6 @@ img:not(.img, .server-icon) {
  display: inline-block;
  width: 144px;
  height: 144px;
- margin-top: 10px;
  background-color: #202225;
  background-size: 144px;
  background-position: 50%;
@@ -220,6 +226,7 @@ a {
  transition: 500ms all !important;
  z-index: 9999;
  box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.08);
+ font-family: "Roboto-Thin";
 }
 
 .nav ul {
@@ -256,10 +263,10 @@ a {
 .nav .logo a {
  display: block;
  float: left;
- padding: 20px 20px !important;
+ padding: 17px 20px !important;
  font-size: 20px;
- padding: 10px 20px;
  text-decoration: none;
+ font-family: "Poppins";
 }
 
 a {
@@ -672,6 +679,85 @@ code {
  font-style: normal;
 }
 
+.hero-section {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ text-align: center;
+ background-attachment: fixed;
+ background-position: center;
+ background-image: url("../svg/background.svg");
+ width: 100%;
+ height: 100vh;
+ color: var(--light);
+ background-size: 50%;
+ transition: 500ms all;
+}
+.hero-grid {
+ display: grid;
+ grid-template-columns: 1fr;
+ max-width: 1224px;
+ margin-right: auto;
+ margin-left: auto;
+}
+
+.hero-title {
+ font-size: 40px;
+ margin-bottom: 0.1em;
+ font-family: "Poppins";
+ margin-top: 5px;
+}
+
+.hero-title2 {
+ font-size: 20px;
+ font-family: "Poppins";
+ margin-top: 5px;
+}
+
+.link-button {
+ padding: 10px 25px;
+ background: var(--button);
+ font-family: "Poppins";
+ border: none;
+ border-radius: 3px;
+ font-weight: 400;
+ color: #fff;
+ transition: 500ms all;
+ cursor: pointer;
+ font-size: 15px;
+ margin: 20px;
+ margin-top: 20px;
+ margin-left: 10px;
+ margin-right: 10px;
+}
+
+.link-button:hover {
+ background: var(--button-hover);
+}
+
+.link-button.green {
+ background: rgb(var(--edit));
+}
+
+.link-button.green {
+ background: rgb(var(--edit-hover));
+}
+
+#feautures {
+ font-family: "Poppins";
+ font-size: 40px;
+ text-align: center;
+ padding-top: 30px;
+ margin: 0;
+}
+
+.section-feautures {
+ height: 100%;
+ margin: 0;
+ padding: 0;
+ background-color: #24282d;
+}
+
 .footer {
  padding: 10px 10px;
  text-align: right;
@@ -681,6 +767,116 @@ code {
  right: 0;
  bottom: 0;
  left: 0;
+ font-family: "Poppins";
+ background: #24282d;
+}
+
+.boxes {
+ display: grid;
+ font-family: "Roboto-Thin";
+ grid-template-columns: 1fr 1fr 1fr 1fr;
+ grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+ grid-gap: 20px;
+ position: relative;
+ margin-left: 20px;
+ margin-right: 20px;
+}
+
+.box {
+ background-position-x: 0%, 0%;
+ background-position-y: 0%, 0%;
+ background-size: auto, auto;
+ background-position: center;
+ background-size: 100%;
+ height: 100px;
+ box-shadow: 0 0 20px -10px rgba(0, 0, 0, 0.05);
+ position: relative;
+ border-radius: 4px;
+ color: white;
+ transition: 250ms;
+}
+
+.box:hover {
+ transform: scale(1.05);
+ box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.08);
+}
+
+.box1 {
+ background: url("../svg/cards/1.svg"), linear-gradient(150deg, #5a57c9, #44409a);
+ background-position: center;
+ background-size: 100%;
+}
+
+.box2 {
+ background: url("../svg/cards/2.svg"), linear-gradient(150deg, #ffd3a5a5, #fd6f88a5);
+ background-position: center;
+ background-size: 100%;
+}
+
+.box3 {
+ background: url("../svg/cards/3.svg"), linear-gradient(150deg, #abdcffa5, #1ba0ffa5);
+ background-position: center;
+ background-size: 100%;
+}
+
+.box4 {
+ background: url("../svg/cards/4.svg"), linear-gradient(150deg, #48435a, #39384a);
+ background-position: center;
+ background-size: 100%;
+}
+
+.boxcontainter {
+ position: absolute;
+ padding: 0 0 0 10px;
+ color: var(--text);
+}
+
+.boxcontainter h3.boxheader {
+ font-size: 35px;
+ margin-top: 10px;
+ margin-bottom: 0;
+}
+
+.boxcontainter .heading {
+ font-size: 17px;
+ font-weight: 500;
+}
+
+.container {
+ max-width: 800px;
+ padding: 20px 0px;
+ margin: auto;
+ margin-top: 60px;
+ font-family: "Poppins";
+}
+
+.headerinfo {
+ text-align: center;
+}
+
+.uptime {
+ font-size: 25px;
+ text-align: center;
+}
+
+.reload {
+ display: flex;
+ align-items: center;
+ max-width: 150px;
+ margin: auto;
+ margin-top: 25px;
+ padding: 10px 25px;
+}
+
+.reload-container {
+ line-height: 100%;
+ display: flex;
+ align-items: center;
+}
+
+.status {
+ max-width: 200px;
+ margin: auto;
 }
 
 .r {
@@ -781,6 +977,56 @@ code {
 
 .cross::after {
  transform: rotate(-45deg);
+}
+
+.content-container {
+ width: 100%;
+ padding: 0 20px;
+ margin: 0 auto;
+ display: grid;
+ grid-template-columns: auto auto;
+ grid-template-rows: auto auto auto auto;
+ gap: 0px 0px;
+ grid-template-areas:
+  "title image"
+  "image2 title2"
+  "title3 image3"
+  "image4 title4";
+}
+
+.card-row .card-image {
+ grid-area: image;
+ width: 100%;
+ margin: 0 auto;
+ transition: 500ms all;
+}
+
+.card-row .card-image img {
+ width: 100%;
+}
+
+.card-row .card-image:hover {
+ transform: scale(1.05);
+}
+
+.card-row .card-text {
+ grid-area: title;
+ background: transparent;
+ width: 90%;
+ margin: 10px auto;
+ text-align: center;
+ font-family: "Poppins";
+}
+
+.card-row .card-title {
+ font-size: 2em;
+ color: #ffffff;
+ font-weight: 700;
+ margin-top: 0;
+}
+
+.noactive {
+ opacity: 0.5;
 }
 
 ::-webkit-scrollbar {

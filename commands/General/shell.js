@@ -1,6 +1,7 @@
-const Discord = require("discord.js")
-const config = require("../../config")
-const process = require("child_process")
+const Discord = require("discord.js");
+const config = require("../../config");
+const child = require("child_process");
+const { errors } = require("puppeteer");
 
 module.exports = {
  name: "shell",
@@ -14,31 +15,42 @@ module.exports = {
     return message.lineReply({
      embed: {
       color: 16734039,
-      description: "❌ | You do not have permission to run this command (Only owner of the bot can run this)!",
+      description: "<:error:860884617770303519> | You do not have permission to run this command (Only owner of the bot can run this)!",
      },
-    })
+    });
    }
-   const result = args.join(" ")
-   if (!result) {
+   const command = args.join(" ");
+   if (!command) {
     return message.lineReply({
      embed: {
       color: 16734039,
-      description: "❌ | Please input some string!",
+      description: "<:error:860884617770303519> | Please input some string!",
      },
-    })
+    });
    }
-   process.exec(result),
-    (error, stdout) => {
-     const response = error || stdout
-     message.lineReply(response, { code: "asciidoc", split: "\n" }).catch((err) => message.channel.send(err))
-    }
+   child.exec(command, (err, res) => {
+    if (err)
+     return message.lineReply({
+      embed: {
+       color: 16734039,
+       title: ":x: Error!",
+       description: `\`\`\`${err.toString().slice(0, 1000) || "Unknown error!"}\`\`\``,
+      },
+     });
+    const embed = new Discord.MessageEmbed() // Prettier
+     .setColor("RANDOM")
+     .setTitle("📝 Shell")
+     .addField("📤 Request", "```" + command + "```")
+     .addField("📥 Server response", `\`\`\`${res.slice(0, 1000) || "No response!"}\`\`\``);
+    message.lineReply(embed);
+   });
   } catch (err) {
    message.lineReply({
     embed: {
      color: 16734039,
      description: "Something went wrong... :cry:",
     },
-   })
+   });
   }
  },
-}
+};
