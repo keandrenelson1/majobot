@@ -1,0 +1,63 @@
+{
+  "name": "@majoexe/database",
+  "version": "6.0.0",
+  "description": "Majo.exe main database schema/client/migrations package",
+  "type": "module",
+  "exports": {
+    ".": "./src/client.ts",
+    "./types": "./src/types.ts",
+    "./redis": "./src/redis/cache.ts"
+  },
+  "scripts": {
+    "deploy": "dotenvx run -- prisma migrate deploy",
+    "prisma:generate": "dotenvx run -- prisma generate --no-hints",
+    "prisma:migrate": "dotenvx run -- prisma migrate dev",
+    "prisma:format": "prisma format",
+    "prisma:seed": "dotenvx run -- prisma db seed",
+    "prisma:studio": "dotenvx run -- prisma studio",
+    "format": "prettier . --write --cache --ignore-unknown --plugin=prettier-plugin-prisma",
+    "format:check": "prettier . --check --cache",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "dependencies": {
+    "@majoexe/config": "workspace:*",
+    "@majoexe/typescript-config": "workspace:*",
+    "@neondatabase/serverless": "^1.0.2",
+    "@prisma/adapter-neon": "^7.2.0",
+    "@prisma/adapter-pg": "^7.2.0",
+    "@prisma/client": "^7.2.0",
+    "chalk": "^5.6.2",
+    "ioredis": "^5.8.2",
+    "pg": "^8.16.3",
+    "prisma": "^7.2.0",
+    "ws": "^8.18.3"
+  },
+  "devDependencies": {
+    "@types/ws": "^8.18.1",
+    "prettier-plugin-prisma": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/igorkowalczyk/majo.exe.git",
+    "directory": "packages/database"
+  },
+  "keywords": [
+    "prisma",
+    "database",
+    "orm",
+    "sql",
+    "postgresql",
+    "mysql"
+  ],
+  "author": "Igor Kowalczyk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/igorkowalczyk/majo.exe/issues"
+  },
+  "homepage": "https://github.com/igorkowalczyk/majo.exe#readme",
+  "packageManager": "pnpm@10.26.2"
+}

@@ -1,7 +1,5 @@
-node_modules
-*min.css
-*min.js
-*md
-*webmanifest
-docs/
-dashboard/static/arc-sw.js
+package.json
+pnpm-lock.yaml
+
+*/*/package.json
+*/*/pnpm-lock.yaml

@@ -1,0 +1,55 @@
+{
+ "$schema": "https://turborepo.org/schema.json",
+ "globalDependencies": [".prettierignore", "prettier.config.js", "eslint.config.ts"],
+ "ui": "tui",
+ "tasks": {
+  "dev": {
+   "dependsOn": ["prisma:generate"],
+   "outputs": [],
+   "persistent": true
+  },
+  "build": {
+   "dependsOn": ["^prisma:generate"],
+   "env": ["SECRET", "NEXTAUTH_URL", "NEXT_PUBLIC_URL", "HOTJAR_ID", "TOKEN", "CLIENT_ID", "CLIENT_SECRET", "DISCORD_SUPPORT_SERVER_ID", "CLIENT_SECRET", "CLIENT_ID", "SECRET", "TOKEN", "REDIS_URL", "DATABASE_URL", "DATABASE_URL_UNPOOLED"],
+   "outputs": [".next/**", "!.next/cache/**"],
+   "persistent": true
+  },
+  "deploy": {
+   "dependsOn": ["^build"],
+   "outputs": [".next/**", "!.next/cache/**"],
+   "env": ["DATABASE_URL", "DATABASE_URL_UNPOOLED", "REDIS_URL", "TOKEN", "CLIENT_ID", "TOPGG_API_KEY", "DISCORD_BOT_LIST_API_KEY"],
+   "persistent": true
+  },
+  "lint": {
+   "dependsOn": ["^format:check"],
+   "outputs": []
+  },
+  "lint:fix": {
+   "outputs": []
+  },
+  "format": {
+   "outputs": []
+  },
+  "format:check": {
+   "outputs": []
+  },
+  "prisma:generate": {
+   "cache": false,
+   "outputs": ["prisma/schema.prisma"]
+  },
+  "prisma:seed": {
+   "cache": false,
+   "env": ["DATABASE_URL", "DATABASE_URL_UNPOOLED", "REDIS_URL"],
+   "interactive": true
+  },
+  "prisma:migrate": {
+   "outputs": ["prisma/migrations/**"],
+   "env": ["DATABASE_URL", "DATABASE_URL_UNPOOLED", "REDIS_URL"],
+   "cache": false,
+   "interactive": true
+  },
+  "prisma:format": {
+   "outputs": ["prisma/schema.prisma"]
+  }
+ }
+}

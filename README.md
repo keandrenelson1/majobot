@@ -1,200 +1,126 @@
-# Majo.exe
+![Header](https://github.com/IgorKowalczyk/majo.exe/assets/49127376/8fd53e0b-1902-460c-9d6c-7d42ea84f8bb)
 
-Majo.exe have almost everything - Fun, Memes, Images, Giveaway, Economy, Anime and NSFW. This bot serve over 150 commands!
+<p align="center">
+ <a href="https://majoexe.com/server"><img src="https://img.shields.io/discord/695282860399001640?color=%234552ef&logo=discord&label=Discord&style=flat&logoColor=fff" alt="Discord" /></a>
+ <a href="https://www.npmjs.com/package/discord.js"><img src="https://img.shields.io/badge/Discord.js-v14-%234552ef?style=flat&logo=npm&logoColor=fff" alt="Discord.js" /></a>
+ <a href="https://majoexe.com/"><img src="https://img.shields.io/github/actions/workflow/status/igorkowalczyk/majo.exe/codeql-analysis.yml?branch=master&style=flat&label=CodeQL&logo=github&color=%234552ef" alt="CodeQL Checks" /></a>
+ <a href="https://majoexe.com"><img src="https://img.shields.io/github/license/igorkowalczyk/majo.exe?style=flat&;logo=github&label=License&color=%234552ef" alt="GitHub License" /></a>
+</p>
 
-[![Discord](https://discord.com/api/guilds/666599184844980224/widget.png?style=banner2)](https://majoexe.herokuapp.com/server)
+## ✨ Features
 
-[![Node.js](https://img.shields.io/github/workflow/status/igorkowalczyk/majobot/Node.js/master?style=flat-square&logo=github&color=%2334D058)](https://majoexe.herokuapp.com/)
-[![Jekyll](https://img.shields.io/github/workflow/status/igorkowalczyk/majobot/Jekyll/master?style=flat-square&logo=github&color=%2334D058)](https://majoexe.herokuapp.com/)
-[![GitHub License](https://img.shields.io/github/license/igorkowalczyk/majobot?style=flat-square&logo=github&color=%2334D058)](https://majoexe.herokuapp.com/)
-[![Version](https://img.shields.io/github/package-json/v/igorkowalczyk/majobot?style=flat-square&logo=github&color=%2334D058)](https://majoexe.herokuapp.com/server)
+- ⚙️ **Fully Customizable:** Tailor Majo.exe to your preferences with comprehensive customization options.
+- 🌆 **Built-in Dashboard:** Manage your Majo.exe settings effortlessly through our intuitive dashboard.
+- 📝 **Easy Configuration:** Streamlined configuration process that makes setting up a breeze.
+- 💯 **150+ Commands:** Access over 150 versatile commands to enrich your server's experience.
+- 📚 **Easy Hosting:** Effortlessly host Majo.exe on your servers and keep it online 24/7.
 
-### Invite
+## 🔗 Invite
 
-Go to [this link](https://discord.com/oauth2/authorize/?permissions=4294967287&scope=bot&client_id=681536055572430918) and add the bot (this requires `MANAGE_GUILD` permission) to your server.
- - [Or to make it easier, visit our website](https://majoexe.herokuapp.com/)
+Go to [this link](https://discord.com/oauth2/authorize/?permissions=4294967287&scope=bot%20applications.commands&client_id=949342410150924319) and add the bot (this requires `MANAGE_GUILD` permission) to your server.
 
-## Features
- - ⚙️ Fully customizable
- - 🌆 Build-in Dashboard
- - 📝 Easy Config
- - 💯 150+ Commands
- - 📚 Easy Hosting
+[Or to make it easier, visit our website](https://majoexe.com/)
 
-## Hosting
+## 🖥️ Hosting
 
-We host this bot. Majo.exe *will be* online 24/7. [Invite Majo here!](#invite)
-However, if you want to host Majo yourself - [take a look here](#self-hosting)
+We are hosting Majo.exe on our own servers. Majo.exe will be online 24/7. [Invite Majo here!](https://majoexe.com/api/invite)  
+However, if you want to host Majo.exe yourself, you can do it. [Check out our tutorials](#-tutorials) to learn how to do it.
 
-### Heroku Hosting
-Deploy the app to [Heroku](https://heroku.com)
+<!-- prettier-ignore-start -->
+> [!IMPORTANT]
+> **This project is not for beginners.** If you are not familiar with Node.js, Prisma, Discord.js or any other technology used in this project, you should not host Majo.exe yourself!
+<!-- prettier-ignore-end -->
 
-[![Deploy to heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/igorkowalczyk/majobot/tree/master)
+### 📝 Tutorials
 
-[Heroku hosting tutorial](#heroku)
+- **[🤖 Bot setup tutorial](/apps/bot/README.md)**
+- **[🔩 Dashboard setup tutorial](/apps/dashboard/README.md)**
+- **[📝 Database setup tutorial](/packages/database/README.md)**
 
-### Self-Hosting
+## ⚙️ System Requirements
 
-1. Clone [this repository](https://github.com/igorkowalczyk/majobot) `git clone https://github.com/IgorKowalczyk/majobot.git`
-2. Run `npm install` to get all dependencies,
-3. Grab a Discord Bot token and client secret on [Discord's developer portal](https://discord.com/developers/applications) [Tutorial](#discord-token)
-4. Fill `config.js`, `emojis_config.js` with your values (Tip: See `/examples` dir for config examples!)
-5. Create new file named `.env` Remember - the file is super secret, better to not share it. (Tip: See `/examples` dir for example `.env` file!)
-6. In `.env` file set this values:
-    * **Required:**
-    * `TOKEN` - Bot token from Discord Developer portal [no. 3]
-    * `PREFIX` - Bot prefix, used to run commands eg. `your-prefix help`
-    * `ID` - Your Discord Bot ID
-    * `AMEAPI` - your Amethyste API token [[Tutorial](#amethyste-api)]
-    * `BRAINID` - Your Brainshop AI Brain ID [[Tutorial](#ai-keys)]
-    * `BRAINKEY` - Your Brainshop AI Brain Key [[Tutorial](#ai-keys)]
-    * `GENIUS` - Your Genius API Key [[Tutorial](#genius)]
-    * `MYSQL_DATABASE` - Your MYSQL database name
-    * `MYSQL_HOST` - Your MYSQL Host name
-    * `MYSQL_PASSWORD` - Your MYSQL user password
-    * `MYSQL_USER` - Your MYSQL User name who can acces to the database
-    * `COOKIES` - Your Youtube Cookies [[Tutorial](#youtube)]
-    * **Not required (You can leave them blank):**
-    * `DOMAIN`^ - your website domain, eg `https://example.com`
-    * `PORT`^ - your website port, eg `8080`. [Note: If you are using heroku, don't add this value. Heroku binds port automatically!]
-    * `DASHBOARD=[true/false]` - if `true` the bot will be hosted with web dasboard, if `false` the bot will be hosted without web dashboard.
-    * `SESSION_SECRET`^ - Session secret key, random sequence of words, letterss or numbers
-    * `SECRET`^ - Client secret from Discord Developers portal [no. 3]
-    * `ANALYTICS` - Google Trakcing ID, for Website analytics [[Tutorial](#analytics-id)]
-    * `CONTACT_WEBHOOK_ID` - Your contact form webhook ID
-    * `CONTACT_WEBHOOK_TOKEN` - Your contact form webhook token
-    * `STATUS_WEBHOOK_ID` - Your status webhook ID
-    * `STATUS_WEBHOOK_TOKEN` - Your status webhook token
-7. Run `npm run start`
-> Note: See the example [`.env` file below](#example-env-file)!
+Ensure your setup meets these prerequisites before setting up Majo.exe:
 
-> Note: Values with `^` are required to run web dashboard!
+- `PostgreSQL 14x` or higher
+- `Node.js 18x` or higher
+- `(Any)` Linux x64¹
+- `~512MB` of RAM (minimum)
+- `~3GB` of hard drive space (minimum)
 
-> Note: Discord webhook link syntax: `https://discord.com/api/webhooks/HERE-IS-WEBHOOK-ID/HERE-IS-WEBHOOK-TOKEN`)
+<!-- prettier-ignore-start -->
+> [!NOTE]
+> 1. Debian based distros are recommended, bot can also run on Windows and MacOS but it's not recommended.
+<!-- prettier-ignore-end -->
 
-### Dashboard hosting
+## 🔒 `.env` files
 
-1. In `.env` file set the `DASHBOARD` config to `true` and assign the `PORT` eg. `8080`. ([See example `.env` file](#example-env-file))
-2. Fill dashboard config in (`config.js` and `.env`)
-3. Add the redirect uri here: https://discord.com/developers/applications/YOUR-BOT-ID/oauth2
-    * ```
-       https://your-domain.com
-       https://your-domain.com/callback
-       https://your-domain.com/dashboard
-       https://your-domain.com/login
-      ```
-4. Run `npm run dashboard` in your terminal
-5. If everyting is ok go to your dashboard in browser (eg. to `localhost:8000`)
-> Note: See the example [`.env` file below](#example-env-file)!
+| Variable                    | Description                                              | Required (Bot) | Required (Dashboard) |
+| --------------------------- | -------------------------------------------------------- | -------------- | -------------------- |
+| `TOKEN`                     | Discord bot token                                        | `✅ Yes`       | `✅ Yes`             |
+| `CLIENT_ID`                 | Discord client ID                                        | `✅ Yes`       | `✅ Yes`             |
+| `CLIENT_SECRET`             | Discord client secret                                    | `❌ No`        | `✅ Yes`             |
+| `DATABASE_URL`              | Main database connection string                          | `✅ Yes`       | `✅ Yes`             |
+| `DATABASE_URL_UNPOOLED`     | Non-pooling database connection string                   | `❌ No`        | `❌ No`              |
+| `REDIS_URL`                 | Redis Cache connection string                            | `✅ Yes`       | `✅ Yes`             |
+| `SECRET`                    | Secret string (minimum 32 characters)                    | `❌ No`        | `✅ Yes`             |
+| `NEXTAUTH_URL`              | NextAuth.js URL (e.g., http://localhost:3000)            | `❌ No`        | `✅ Yes`             |
+| `NEXT_PUBLIC_URL`           | Next.js public URL (e.g., http://localhost:3000)         | `❌ No`¹       | `✅ Yes`             |
+| `HOTJAR_ID`                 | [Hotjar](https://hotjar.com) ID                          | `❌ No`        | `❌ No`              |
+| `DISCORD_SUPPORT_SERVER_ID` | Discord support server ID                                | `❌ No`        | `❌ No`²             |
+| `TOPGG_API_KEY`             | [top.gg](https://top.gg) API key                         | `❌ No`        | `❌ No`³             |
+| `DISCORD_BOT_LIST_API_KEY`  | [discordbotlist.com](https://discordbotlist.com) API key | `❌ No`        | `❌ No`⁴             |
 
-##### Additional info
-> If you are hosting the site locally it is best to generate certificates for it. If you have them:
-> 1. Change `certs: false` & `localhost: false` values in `config.js` to true
-> 2. Place the `server.cert` & `server.key` certs in `/dashboard/certs/` directory
+<!-- prettier-ignore-start -->
+> [!NOTE]
+> 1. `NEXT_PUBLIC_URL` is required only if you want to also host the dashboard.
+> 2. `DISCORD_SUPPORT_SERVER_ID` is required only if you want to automatically add users to your own Discord server when they log in to the dashboard. Please note that the bot needs `Manage Server` permission in the server!\
+> 3. `TOPGG_API_KEY` is required only if you want to automatically post server count to [top.gg](https://top.gg).
+> 4. `DISCORD_BOT_LIST_API_KEY` is required only if you want to automatically post server count, stats and more to [discordbotlist.com](https://discordbotlist.com).
 
-### `.env` config table
-| `.env` varriable | Description | Required |
-|---|---|---|
-| TOKEN | The bot token (Remember! The `TOKEN` is super secret) | :heavy_check_mark: |
-| PREFIX | The default bot prefix (eg. `!majo`) | :heavy_check_mark: |
-| ID | Your Discord Bot ID | :heavy_check_mark: |
-| AMEAPI | Your Amethyste api token | :heavy_check_mark: |
-| BRAINID | Your Brainshop AI Brain ID | :heavy_check_mark: |
-| MYSQL_DATABASE | Your MYSQL database name | :heavy_check_mark: |
-| MYSQL_HOST | Your MYSQL Host | :heavy_check_mark: |
-| MYSQL_USER | Your MYSQL user | :heavy_check_mark: |
-| MYSQL_PASSWORD | Your Brainshop AI Brain Key | :heavy_check_mark: |
-| GENIUS | Your genius API Key | :heavy_check_mark: |
-| DOMAIN | Your website domain (eg `https://example.com`)`*` | :x:/:heavy_check_mark: |
-| PORT| Your webiste port, (eg. `8008 `)`*`| :x:/:heavy_check_mark: |
-| DASHBOARD | The Web-Dashboard config value. (eg. `true/false`, default value: `false`)`*` | :x: |
-| SESSION_SECRET | Random sequence of words, letterss or numbers`*` | :x:/:heavy_check_mark: |
-| SECRET | The bot client secret (Remember! The `SECRET` value is Super-Secret)`*` | :x:/:heavy_check_mark: |
-| ANALYTICS | Google analytics tracking ID, used in Web-Dashboard`*` | :x: |
-| COOKIES | Your youtube cookies | :heavy_check_mark: |
-| CONTACT_WEBHOOK_ID | Your contact form webhook ID | :x: |
-| CONTACT_WEBHOOK_TOKEN | Your contact form webhook token | :x: |
-| STATUS_WEBHOOK_ID | Your status webhook ID | :x: |
-| STATUS_WEBHOOK_TOKEN | Your status webhook token | :x: |
-> - `*` = Required to run the web dashboard!
+<!-- prettier-ignore-end -->
 
-### Example `.env` file
-<details><summary>Example <code>.env</code> file</summary>
- 
-[`.env.example`](https://github.com/igorkowalczyk/majobot/blob/master/.env.example)
+## 📝 Contributors
 
-```
-# Environment Config
+- [**@binary-blazer**](https://github.com/binary-blazer) - Hosting support
+- [**@TsukiyoDevs**](https://github.com/TsukiyoDevs) - Bug fixes, New features, Testing
+- [**@r-kjha**](https://github.com/r-kjha) - Emoji config support, Bug fixes, New features, Testing
+- [**@Joao-Victor-Liporini**](https://github.com/Joao-Victor-Liporini) - Bug fixes, Command handler improvements, Testing, New features
+- [**@evandev**](https://github.com/xefew) - Bug fixes, Testing
+- [**iWeedy\_**](https://github.com/i-weedy) - Testing
+- [**@krzesl0**](https://github.com/krzesl0) - New Features, Bug fixes, Testing
+- [**@\_index1337**](https://github.com/index1337) - Readme tutorials
+- [**@Wafelowski**](https://github.com/HeavyWolfPL) - Translation improvements
+- [**@Sakshyam6966**](https://github.com/Sakshyam6966) - New Features, Bug fixes, Testing
 
-# Required
-TOKEN=YOUR_TOKEN_GOES_HERE
-PREFIX=!majo
-ID=YOUR_BOT_ID
-AMEAPI=YOUR_AMETHYSTE_API_TOKEN
-MYSQL_DATABASE=YOUR_MYSQL_DATABASE_NAME
-MYSQL_HOST=YOUR_MYSQL_HOST
-MYSQL_PASSWORD=YOUR_MYSQL_USER_PASSWORD
-MYSQL_USER=YOUR_MYSQL_DATABASE_USER
-BRAINID=YOUR_BRAINSHOP_AI_BRAIN_ID
-BRAINKEY=YOUR_BRAINSHOP_AI_BRAIN_KEY
-GENIUS=YOUR_GENIUS_API_KEY
-CONTACT_WEBHOOK_TOKEN=YOUR_CONTACT_FORM_WEBHOOK_TOKEN
-CONTACT_WEBHOOK_ID=YOUR_CONTACT_FORM_WEBHOOK_ID
-STATUS_WEBHOOK_TOKEN=YOUR_STATUS_WEBHOOK_TOKEN
-STATUS_WEBHOOK_ID=YOUR_STATUS_WEBHOOK_ID
+<!-- ## 💝 Sponsors
 
-# Not required
-DASHBOARD=[true/false]
-DOMAIN=YOUR_WEBSITE_DOMAIN
-PORT=YOUR_WEBSITE_PORT
-SESSION_SECRET=YOUR_SESSION_SECRET_(RANDOM_WORDS)
-SECRET=YOUR_BOT_CLIENT_SECRET
-ANALYTICS=YOUR_GOOGLE_TRACKING_ID
-COOKIES=YOUR_YOUTUBE_COOKIES
+**These wonderful people and services have helped develop Majo.exe, without them this project would not exist. Thanks goes to these wonderful people!**
 
-# Note: !majo is the default prefix, you can change it later.
-```
-</details>
+|                                                                      | Sponsor                                                             | Description                                                                                                             |
+| -------------------------------------------------------------------- | ------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------- |
+| ![TrestHost Logo](https://majoexe.com/assets/sponsors/tresthost.png) | [**TrestHost**](https://dash.tresthost.me/register?ref=majonez.exe) | **TrestHost is a good and powerful hosting provider** providing servers from the **USA and Germany**. Try us out today! | -->
 
-## Tokens tutorials
+## ⁉️ Issues
 
-##### Discord Token
-> Soon!
+If you have any issues with the page please create [new issue here](https://github.com/igorkowalczyk/majo.exe/issues). When creating new issue please provide as much information as possible. If you can, please provide logs from console.
 
-##### Amethyste Api
-> Soon!
+We will review your pull request as soon as possible. We might suggest some changes or improvements.
 
-##### AI Keys
-> Soon!
+## 📥 Pull Requests
 
-##### Youtube
-> Soon!
-
-##### Genius
-> Soon!
-
-##### Analytics ID
-> Soon!
-
-##### Heroku
-> Soon!
-
-## Contributors
-- [@r-kjha](https://github.com/r-kjha) (Emoji config support, Bug fixes, New features, Testing)
-- [@Joao-Victor-Liporini](https://github.com/Joao-Victor-Liporini) (Bug fixes, Command handler improvements, Testing, New features)
-- [@krzesl0](https://github.com/krzesl0) (New Features, Bug fixes, Testing)
-- [@Sakshyam6966](https://github.com/Sakshyam6966) (New Features, Bug fixes, Testing)
-- [@dhvitOP](https://github.com/dhvitOP) (Music commands)
-- [@Wafelowski](https://github.com/HeavyWolfPL) (Translation improvements)
-
-## Issues
-If you have any issues with the page please create [new issue here](https://github.com/igorkowalczyk/majobot/issues)
-
-## Pull Requests
 When submitting a pull request:
-- Clone the repo.
-- Create a branch off of master and give it a meaningful name (e.g. my-awesome-new-feature).
-- Open a [pull request](https://github.com/igorkowalczyk/majobot/pulls) on [GitHub](https://github.com) and describe the feature or fix.
 
-## License
-This project is licensed under the MIT. See the [LICENSE](https://github.com/igorkowalczyk/majobot/blob/master/license.md) file for details
+- Clone the repository (`git clone https://github.com/igorkowalczyk/majo.exe`)
+- Create a branch off of `master` and give it a meaningful name (e.g. `my-awesome-new-feature`).
+- Open a [pull request](https://github.com/igorkowalczyk/majo.exe/pulls) on [GitHub](https://github.com) and describe the feature or fix.
+
+## 📋 License
+
+This project is licensed under the MIT. See the [LICENSE](https://github.com/igorkowalczyk/majo.exe/blob/master/license.md) file for details
+
+<details>
+ <summary>The cake is a lie 🍰</summary>
+
+<a href="https://igorkowalczyk.dev"><img src="https://views.igorkowalczyk.vercel.app/api/badge/majo.exe?style=flat-square&color=333333&label=Repo+views" alt="Github repository views"></a>
+
+</details>

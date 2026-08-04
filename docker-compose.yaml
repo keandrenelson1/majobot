@@ -1,0 +1,69 @@
+services:
+ db:
+  image: postgres:latest
+  container_name: majoexe-db
+  restart: unless-stopped
+  user: postgres
+  environment:
+   - POSTGRES_DB=majoexe
+   - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+  volumes:
+   - database:/var/lib/postgresql/data
+  ports:
+   - "5432:5432"
+  networks:
+   - default
+  healthcheck:
+   test: ["CMD", "pg_isready"]
+   interval: 10s
+   timeout: 5s
+   retries: 5
+
+ redis:
+  image: redis:latest
+  container_name: majoexe-cache
+  restart: unless-stopped
+  environment:
+   - REDIS_PASSWORD=${REDIS_PASSWORD}
+  ports:
+   - "6379:6379"
+  networks:
+   - default
+  volumes:
+   - cache:/data
+  depends_on:
+   db:
+    condition: service_healthy
+  healthcheck:
+   test: ["CMD", "redis-cli", "ping"]
+   interval: 10s
+   timeout: 5s
+   retries: 5
+
+ bot:
+  build:
+   context: .
+   dockerfile: ./apps/bot/Dockerfile
+  env_file:
+   - ./apps/bot/.env
+   - ./packages/database/.env
+  container_name: majoexe-bot
+  restart: unless-stopped
+  depends_on:
+   db:
+    condition: service_healthy
+   redis:
+    condition: service_healthy
+  networks:
+   - default
+
+networks:
+ default:
+  #  name: podman
+  driver: bridge
+
+volumes:
+ database:
+  driver: local
+ cache:
+  driver: local
